@@ -287,8 +287,7 @@
 <body>
   <div id="bar"></div>
   <header><b>⚡Produção de conteúdo eletromag - Davi Ferreira Rocha - Engenharia de Computação</b>
-    <div class="tg"><button id="m0" class="on">Intuição Física + Formalismo</button><button id="m1">Rigor Matemático
-        Completo</button></div>
+    <div class="tg"><button id="m0" class="on">Intuição Física + Formalismo</button><button id="m1">Formalismo e deduções matemáticas</button></div>
   </header>
   <nav><a href="#a1"></a><a href="#a2"></a><a href="#a3"></a><a href="#a4"></a><a href="#a5"></a><a href="#a6"></a><a
       href="#a7"></a></nav>
@@ -326,9 +325,10 @@
   </section>
   <div class="lab">
     <div class="in"><canvas id="c1"></canvas>
+      <label> experimente arrastar as cargas ou a superfície tracejada.</label>
       <div class="ctl"><button id="b1">+ carga</button><button id="b2">− carga</button><button
           id="b3">dipolo</button><button id="b4">limpar</button><label>raio da gaussiana <input id="r1" type="range"
-            min="30" max="200" value="90"></label><span>Arraste cargas ou a superfície tracejada.</span></div>
+            min="30" max="200" value="90"></label></div>
       <div class="rd" id="o1"></div>
     </div>
   </div>
@@ -341,8 +341,7 @@
       líquido só muda se houver uma fonte dentro.)</p>
     <h3 class="E">3 · Faraday-Lenz: B variável gera E rotacional</h3>
     <div class="eq">∮ <b>E</b>·d<b>l</b> = −dΦ<sub>B</sub>/dt &nbsp;⟺&nbsp; ∇×<b>E</b> = −∂<b>B</b>/∂t</div>
-    <p>O sinal negativo é a lei de Lenz: a corrente induzida cria um campo que <i>se opõe</i> à variação de fluxo. Se o
-      sinal fosse positivo, a indução reforçaria a si mesma e geraria energia do nada.</p>
+    <p>O sinal negativo é a lei de Lenz: a corrente induzida cria um campo que <i>se opõe</i> à variação de fluxo. O sinal negativo expressa a lei de Lenz: o efeito da indução se opõe à variação do fluxo magnético que a provoca. Essa oposição é fundamental para a conservação de energia, pois impede que a indução produza um aumento espontâneo da energia sem que haja trabalho realizado sobre o sistema.</p>
     <div class="rig">
       <p>Stokes: ∮<sub>C</sub><b>E</b>·d<b>l</b> = ∬<sub>S</sub>(∇×<b>E</b>)·d<b>A</b>. Com superfície fixa,
         −d/dt∬<b>B</b>·d<b>A</b> = −∬∂<b>B</b>/∂t·d<b>A</b>, e como S é arbitrária, ∇×<b>E</b> = −∂<b>B</b>/∂t.</p>
@@ -453,7 +452,9 @@
     <p>A equação \(c = 1/\sqrt{\mu_0\varepsilon_0}\) revela que a velocidade da luz depende apenas de duas constantes
       fundamentais do vácuo, sem fazer qualquer referência à velocidade da fonte ou do observador. Isso criou um conflito direto com a mecânica de Newton, na qual as velocidades deveriam sempre se somar. Em vez de modificar as equações de Maxwell para adaptá-las à física clássica, Albert Einstein, em 1905, partiu da premissa de que o eletromagnetismo estava correto: se as leis de Maxwell são universais e válidas em todos os referenciais inerciais, então o valor de \(c\) precisa ser invariante para qualquer observador. Ao elevar essa consequência das equações de Maxwell ao status de postulado fundamental, Einstein foi obrigado a abandonar as noções de espaço e tempo absolutos, dando origem à uma de suas mais importantes contribuições: a Teoria da Relatividade Restrita.</p>
   </section>
-  <script>
+  <footer><b>Referências:</b><br>· J. C. Maxwell, <i>A Treatise on Electricity and Magnetism</i> (1873) <br>· D. J. Griffiths, <i>Introduction to Electrodynamics</i> <br>· R. P. Feynman, <i>The Feynman Lectures on Physics, Vol. II</i> <br>· Departamento de física da UFMG, <a href="https://lilith.fisica.ufmg.br/~feletro/NEMES/capitulo-6.pdf" target="_blank"><i> Magnetismo — Capítulo 6</i></a></footer>
+
+  <script>  
     const $ = s => document.getElementById(s), TAU = Math.PI * 2;
     // modo + progresso
     [0, 1].forEach(i => $('m' + i).onclick = () => { document.body.classList.toggle('rigor', !!i); $('m0').classList.toggle('on', !i); $('m1').classList.toggle('on', !!i) });
