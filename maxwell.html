@@ -1,149 +1,530 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Quatro equações, toda a luz</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap">
-<style>
-:root{--bg:#0B0F19;--tx:#E5E9F2;--mu:#8A94A8;--E:#38BDF8;--B:#F59E0B;--Q:#10B981;--W:#C084FC;--pn:#131a2b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-behavior:smooth;scroll-padding-top:70px}body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.7 Inter,system-ui,sans-serif}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:#0B0F19ee;backdrop-filter:blur(8px);display:flex;gap:12px;justify-content:space-between;align-items:center;padding:10px 18px;border-bottom:1px solid #1f2940;font-size:13px;flex-wrap:wrap}
-#bar{position:fixed;top:0;left:0;height:3px;background:var(--W);width:0;z-index:20}
-.tg button{background:none;border:1px solid #2a3552;color:var(--mu);padding:5px 10px;font:inherit;cursor:pointer}.tg button:first-child{border-radius:8px 0 0 8px}.tg button:last-child{border-radius:0 8px 8px 0}.tg button.on{background:var(--W);color:#0B0F19;border-color:var(--W)}
-nav{position:fixed;left:12px;top:40%;display:flex;flex-direction:column;gap:8px;z-index:5}nav a{width:9px;height:9px;border-radius:50%;background:#2a3552;display:block}nav a:hover{background:var(--W)}@media(max-width:1250px){nav{display:none}}
-section{max-width:820px;margin:0 auto;padding:60px 20px 20px}h1{font-size:clamp(32px,6vw,54px);line-height:1.1;font-weight:800;margin:70px 0 12px}h2{font-size:30px;margin:0 0 6px}.ato{font:12px 'JetBrains Mono',monospace;color:var(--W);letter-spacing:.15em;text-transform:uppercase}
-p{color:#c7cedd}.mu{color:var(--mu);font-size:14px}.E{color:var(--E)}.B{color:var(--B)}.Q{color:var(--Q)}.W{color:var(--W)}
-.eq{font:italic 22px/1.5 'Times New Roman',serif;text-align:center;background:var(--pn);border:1px solid #1f2940;border-radius:10px;padding:12px;margin:16px 0;overflow-x:auto;white-space:nowrap}.eq small{display:block;font:12px 'JetBrains Mono',monospace;font-style:normal;color:var(--mu)}
-.rig{display:none;border-left:3px solid var(--W);padding:2px 16px;margin:16px 0;background:#c084fc0d}body.rigor .rig{display:block}
-.lab{max-width:1100px;margin:26px auto;padding:0 14px}.lab .in{background:var(--pn);border:1px solid #1f2940;border-radius:14px;padding:14px}canvas{width:100%;display:block;border-radius:8px;background:#0a0e18;touch-action:none}
-.ctl{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:10px;font-size:13px;color:var(--mu)}.ctl button{background:#1b2540;color:var(--tx);border:1px solid #2a3552;border-radius:8px;padding:6px 12px;cursor:pointer;font:inherit}.ctl button.on{border-color:var(--W);color:var(--W)}input[type=range]{accent-color:var(--W)}
-.rd{font:13px 'JetBrains Mono',monospace;color:var(--tx);margin-top:8px;min-height:3.2em}
-.tl{display:flex;gap:8px;flex-wrap:wrap}.tl button{flex:1;min-width:140px;background:var(--pn);border:1px solid #2a3552;color:var(--tx);border-radius:10px;padding:10px;cursor:pointer;font:inherit;font-size:14px}.tl button.on{border-color:var(--W)}
-footer{max-width:820px;margin:60px auto;padding:20px;border-top:1px solid #1f2940;font-size:13px;color:var(--mu)}
-</style></head><body>
-<div id="bar"></div>
-<header><b>⚡Produção de conteúdo eletromag - Davi Ferreira Rocha - Engenharia de Computação</b><div class="tg"><button id="m0" class="on">Intuição Física + Formalismo</button><button id="m1">Rigor Matemático Completo</button></div></header>
-<nav><a href="#a1"></a><a href="#a2"></a><a href="#a3"></a><a href="#a4"></a><a href="#a5"></a><a href="#a6"></a><a href="#a7"></a></nav>
-<section><h1>Como quatro equações explicam toda a eletricidade, o magnetismo e a própria luz?</h1><p>Uma jornada em sete atos, do quebra-cabeça de 1860 até a semente da relatividade. Arraste, mova e experimente: cada laboratório mostra um termo das equações em ação. Cores: <span class="E">campo elétrico E</span>, <span class="B">campo magnético B</span>, <span class="Q">cargas e correntes</span>, <span class="W">propagação e Poynting</span>.</p></section>
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-<section id="a1"><div class="ato">Ato 1</div><h2>O quebra-cabeça de 1860</h2>
-<p>Eletricidade e magnetismo pareciam forças separadas, agindo "à distância". Havia peças soltas: Coulomb (cargas se atraem/repelem), Gauss (cargas e fluxo), Ampère (correntes geram magnetismo), Faraday (magnetismo variável gera eletricidade). Faraday propôs algo radical: o <b>campo</b> é uma entidade física que preenche o espaço, não um artifício de cálculo.</p>
-<div class="tl" id="tl"></div><p class="rd" id="tlt"></p></section>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Quatro equações, toda a luz</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap">
+  <style>
+    :root {
+      --bg: #0B0F19;
+      --tx: #E5E9F2;
+      --mu: #8A94A8;
+      --E: #38BDF8;
+      --B: #F59E0B;
+      --Q: #10B981;
+      --W: #C084FC;
+      --pn: #131a2b;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
 
-<section id="a2"><div class="ato">Ato 2</div><h2>As quatro equações</h2>
-<p>Cada uma tem duas faces: a <b>integral</b> (fluxos e circulações em regiões inteiras) e a <b>diferencial</b> (o que acontece em cada ponto).</p>
-<h3 class="E">1 · Gauss elétrico: cargas são fontes de E</h3>
-<div class="eq">∮ <b>E</b>·d<b>A</b> = Q<sub>int</sub> / ε₀ &nbsp;⟺&nbsp; ∇·<b>E</b> = ρ / ε₀<small>integral ⟺ diferencial</small></div>
-<div class="rig"><p>O teorema da divergência, ∮<sub>S</sub> <b>F</b>·d<b>A</b> = ∭<sub>V</sub> ∇·<b>F</b> dV, aplicado a E com Q<sub>int</sub>=∭ρ dV, vale para todo volume V, logo a igualdade vale ponto a ponto.</p></div></section>
-<div class="lab"><div class="in"><canvas id="c1"></canvas><div class="ctl"><button id="b1">+ carga</button><button id="b2">− carga</button><button id="b3">dipolo</button><button id="b4">limpar</button><label>raio da gaussiana <input id="r1" type="range" min="30" max="200" value="90"></label><span>Arraste cargas ou a superfície tracejada.</span></div><div class="rd" id="o1"></div></div></div>
-<section><h3 class="B">2 · Gauss magnético: não existem monopolos</h3>
-<div class="eq">∮ <b>B</b>·d<b>A</b> = 0 &nbsp;⟺&nbsp; ∇·<b>B</b> = 0</div>
-<p>Se você quebra um imã no meio, vão surgir dois ímãs completos, cada um com Norte e Sul. As linhas de B se fecham sobre si mesmas, então tudo que entra numa superfície fechada também sai. (O laboratório de monopolos foi omitido, por não estar funcionando corretamente;  mas podemos usar o dipolo do laboratório acima como analogia: o fluxo líquido só muda se houver uma fonte dentro.)</p>
-<h3 class="E">3 · Faraday-Lenz: B variável gera E rotacional</h3>
-<div class="eq">∮ <b>E</b>·d<b>l</b> = −dΦ<sub>B</sub>/dt &nbsp;⟺&nbsp; ∇×<b>E</b> = −∂<b>B</b>/∂t</div>
-<p>O sinal negativo é a lei de Lenz: a corrente induzida cria um campo que <i>se opõe</i> à variação de fluxo. Se o sinal fosse positivo, a indução reforçaria a si mesma e geraria energia do nada.</p>
-<div class="rig"><p>Stokes: ∮<sub>C</sub><b>E</b>·d<b>l</b> = ∬<sub>S</sub>(∇×<b>E</b>)·d<b>A</b>. Com superfície fixa, −d/dt∬<b>B</b>·d<b>A</b> = −∬∂<b>B</b>/∂t·d<b>A</b>, e como S é arbitrária, ∇×<b>E</b> = −∂<b>B</b>/∂t.</p></div></section>
-<div class="lab"><div class="in"><canvas id="c2"></canvas><div class="ctl"><label>frequência do ímã <input id="f2" type="range" min="0" max="3" step=".05" value="1"></label></div><div class="rd" id="o2"></div></div></div>
-<section><h3 class="B">4 · Ampère (versão incompleta)</h3>
-<div class="eq">∮ <b>B</b>·d<b>l</b> = μ₀ I &nbsp;⟺&nbsp; ∇×<b>B</b> = μ₀ <b>J</b><small>falta algo...</small></div>
-<p>Correntes geram campo magnético circulante. Parece completa, mas esconde uma crise matemática.</p></section>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 70px
+    }
 
-<section id="a3"><div class="ato">Ato 3</div><h2>A corrente de deslocamento</h2>
-<p>Carregue um capacitor. Uma superfície que corta o fio é atravessada por corrente I e dá ∮B·dl = μ₀I. Mas uma superfície abaulada que passa <i>entre as placas</i> não é atravessada por corrente alguma (J=0) e daria zero. Mesma curva, dois resultados: contradição.</p>
-<p>Maxwell notou que o problema é a conservação da carga: ∇·J + ∂ρ/∂t = 0. Aplicando o divergente em ∇×B = μ₀J, o lado esquerdo é sempre zero, mas ∇·J não é. A correção é somar μ₀ε₀ ∂E/∂t: o campo elétrico variável <i>é</i> a corrente que faltava.</p>
-<div class="eq">∇×<b>B</b> = μ₀<b>J</b> + μ₀ε₀ ∂<b>E</b>/∂t<small>Ampère-Maxwell</small></div></section>
-<div class="lab"><div class="in"><canvas id="c3"></canvas><div class="ctl"><button id="s1" class="on">Superfície 1 (corta o fio)</button><button id="s2">Superfície 2 (entre as placas)</button><label>corrente I <input id="i3" type="range" min=".2" max="5" step=".1" value="2"></label></div><div class="rd" id="o3"></div></div></div>
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--tx);
+      font: 17px/1.7 Inter, system-ui, sans-serif
+    }
 
-<section id="a4"><div class="ato">Ato 4</div><h2>Ondas auto-sustentadas</h2>
-<p>No vácuo (ρ=0, J=0): ∂B/∂t gera E e ∂E/∂t gera B. Cada campo variável cria o outro, e a perturbação se propaga sozinha.</p>
-<div class="eq">∇²<b>E</b> = μ₀ε₀ ∂²<b>E</b>/∂t²<small>equação de onda</small></div>
-<div class="rig"><p><b>Dedução.</b> Rotacional de Faraday: ∇×(∇×E) = −∂(∇×B)/∂t. Identidade: ∇×(∇×E) = ∇(∇·E) − ∇²E. No vácuo ∇·E=0, logo −∇²E = −∂(∇×B)/∂t. Ampère-Maxwell dá ∇×B = μ₀ε₀∂E/∂t. Substituindo: ∇²E = μ₀ε₀ ∂²E/∂t². Análogo para B.</p></div></section>
+    header {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 9;
+      background: #0B0F19ee;
+      backdrop-filter: blur(8px);
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 18px;
+      border-bottom: 1px solid #1f2940;
+      font-size: 13px;
+      flex-wrap: wrap
+    }
 
-<section id="a5"><div class="ato">Ato 5</div><h2>A natureza da luz</h2>
-<div class="eq">v = 1/√(μ₀ε₀) = 1/√(4π×10⁻⁷ · 8,854×10⁻¹²) ≈ 2,998×10⁸ m/s<small id="cc"></small></div>
-<p>Esse número, vindo de medidas elétricas e magnéticas de bancada, coincide com a velocidade da luz medida por Fizeau e Foucault. Maxwell concluiu que a luz é uma onda eletromagnética. Rádio, luz visível e raios gama são soluções das mesmas equações; só muda a frequência.</p></section>
-<div class="lab"><div class="in"><canvas id="c5" style="height:130px"></canvas><div class="ctl"><label style="flex:1">log₁₀ f <input id="f5" type="range" min="3" max="22" step=".01" value="14.8" style="width:80%"></label></div><div class="rd" id="o5"></div></div></div>
+    #bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--W);
+      width: 0;
+      z-index: 20
+    }
 
-<section id="a6">
-  <div class="ato">Ato 6</div>
-  <h2>Do papel ao mundo moderno</h2>
-  
-  <p><b class="W">Antenas (Wi-Fi, 5G, rádio):</b> enquanto cargas em movimento uniforme apenas carregam seus campos consigo, cargas aceleradas (variações temporais na densidade de corrente, ∂<b>J</b>/∂t) geram perturbações transversais nos campos <b>E</b> e <b>B</b> que se desprendem da fonte. Através da lei de Ampère-Maxwell acoplada à lei de Faraday foi possível ver que esses campos se autoalimentam e irradiam pelo espaço como ondas eletromagnéticas, transportando energia e informação à velocidade da luz.</p>
-  
-  <p><b class="W">Fibras ópticas:</b> a partir das equações de Maxwell aplicadas à interface entre dois meios dielétricos com diferentes índices de refração (o núcleo e a casca da fibra), impõem-se condições de contorno sobre as componentes tangenciais e normais de <b>E</b> e <b>B</b>. Quando um feixe de luz incide nessa fronteira acima do ângulo crítico, as equações exigem que a onda transmitida se torne evanescente, resultando na reflexão interna total que confina e guia o pulso óptico por quilômetros com atenuação mínima.</p>
-  
-  <p><b class="B">Transformadores e carga por indução:</b> governados diretamente pela lei de Faraday-Lenz (∇×<b>E</b> = −∂<b>B</b>/∂t). Uma corrente alternada na bobina primária produz um fluxo magnético variável no tempo, frequentemente canalizado por um núcleo ferromagnético. Esse campo magnético oscilante atravessa a bobina secundária e induz nela um campo elétrico não conservativo (uma força eletromotriz), permitindo transferir energia elétrica e alterar níveis de tensão sem qualquer contato físico.</p>
-  
-  <p><b class="E">Gaiola de Faraday:</b> no regime eletrostático, um campo externo desloca os elétrons livres de um condutor até que o acúmulo de cargas na superfície crie um campo oposto que anula perfeitamente o campo resultante no interior (<b>E</b> = 0, mantendo o volume equipotencial). No caso dinâmico de ondas eletromagnéticas (como no micro-ondas ou na blindagem de cabos), o campo incidente induz correntes superficiais oscilantes (correntes parasitas) que irradiam uma onda de mesma amplitude e fase oposta, cancelando a radiação dentro da cavidade.</p>
-</section>
+    .tg button {
+      background: none;
+      border: 1px solid #2a3552;
+      color: var(--mu);
+      padding: 5px 10px;
+      font: inherit;
+      cursor: pointer
+    }
 
-<section id="a7"><div class="ato">Ato 7</div><h2>Conexões profundas</h2>
-<h3 class="W">Energia no espaço vazio</h3>
-<div class="eq"><b>S</b> = (1/μ₀) <b>E</b> × <b>B</b></div>
-<p>Num circuito com bateria e resistor, a energia não viaja dentro dos elétrons: ela flui pelo campo ao redor do fio e entra radialmente no resistor. O fio apenas guia os campos.</p>
-<h3 class="Q">A conservação da carga vem de graça</h3>
-<p>Como ∇·(∇×B) ≡ 0 sempre, tomar o divergente de Ampère-Maxwell e usar Gauss elétrico resulta em ∇·J + ∂ρ/∂t = 0. Não é uma lei extra: está embutida na estrutura das equações.</p>
-<h3 class="W">A semente da relatividade</h3>
-<p>c = 1/√(μ₀ε₀) não diz em relação a qual referencial. Se as equações valem em todos os referenciais inerciais, c é o mesmo para todos. Em 1905, Einstein levou isso a sério e abandonou o tempo absoluto de Newton.</p></section>
-<footer><b>Referências:</b> J. C. Maxwell, <i>A Treatise on Electricity and Magnetism</i> (1873) · D. J. Griffiths, <i>Introduction to Electrodynamics</i> · R. P. Feynman, <i>The Feynman Lectures on Physics, Vol. II</i> · Nome do Autor, <a href="https://lilith.fisica.ufmg.br/~feletro/NEMES/capitulo-6.pdf" target="_blank"><i>Título do Material — Capítulo 6</i></a> (UFMG).</footer>
+    .tg button:first-child {
+      border-radius: 8px 0 0 8px
+    }
 
-<script>
-const $=s=>document.getElementById(s),TAU=Math.PI*2;
-// modo + progresso
-[0,1].forEach(i=>$('m'+i).onclick=()=>{document.body.classList.toggle('rigor',!!i);$('m0').classList.toggle('on',!i);$('m1').classList.toggle('on',!!i)});
-addEventListener('scroll',()=>$('bar').style.width=100*scrollY/(document.body.scrollHeight-innerHeight)+'%');
-// timeline
-const T=[['Oersted · 1820','Uma corrente elétrica passando por um fio condutor desvia a agulha de uma bússola: eletricidade gera magnetismo.'],['Faraday · 1831','Um ímã em movimento induz corrente numa espira: um campo magnético variável gera uma corrente elétrica em um fio condutor.'],['Maxwell · 1861','Antes de 1861, a Lei de Faraday já mostrava que um campo magnético variável gerava um campo elétrico. Maxwell demonstrou o complemento: um campo elétrico que varia no tempo também gera um campo magnético, mesmo no vácuo, onde não há fluxo real de cargas elétricas. Acrescenta a corrente de deslocamento, completando assim a simetria entre os campos.'],['Maxwell · 1865',' Ao incluir a corrente de deslocamento de Lei de Ampère, Maxwell percebeu que campos elétricos e magnéticos variáveis podiam se retroalimentar e viajar pelo espaço na forma de ondas. Ao calcular a velocidade dessas ondas usando constantes elétricas e magnéticas conhecidas, ele chegou exatamente à velocidade da luz, concluindo que a própria luz é uma onda eletromagnética.']];
-T.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t[0];b.onclick=()=>{[...$('tl').children].forEach(x=>x.classList.remove('on'));b.classList.add('on');$('tlt').textContent=t[1]};$('tl').appendChild(b)});$('tl').children[0].click();
-// canvas
-function cv(id,h){const c=$(id),d=devicePixelRatio||1,o={c,h};o.r=()=>{const w=c.parentNode.clientWidth-28;c.style.width=w+'px';c.style.height=h+'px';c.width=w*d;c.height=h*d;o.w=w;o.x=c.getContext('2d');o.x.setTransform(d,0,0,d,0,0)};o.r();addEventListener('resize',o.r);return o}
-function arrow(x,a,b,c,d,col,w=1.6){x.strokeStyle=x.fillStyle=col;x.lineWidth=w;x.beginPath();x.moveTo(a,b);x.lineTo(c,d);x.stroke();const g=Math.atan2(d-b,c-a);x.beginPath();x.moveTo(c,d);x.lineTo(c-6*Math.cos(g-.4),d-6*Math.sin(g-.4));x.lineTo(c-6*Math.cos(g+.4),d-6*Math.sin(g+.4));x.fill()}
-function txt(x,s,a,b,col='#8A94A8',f='12px JetBrains Mono'){x.fillStyle=col;x.font=f;x.fillText(s,a,b)}
-// Lab 1
-const L1=cv('c1',420);let ch=[{x:.4,y:.5,q:1},{x:.6,y:.5,q:-1}],G={x:.5,y:.5,r:90},dr=null;
-const add=(q,x=.3+Math.random()*.4,y=.3+Math.random()*.4)=>ch.push({x,y,q});
-$('b1').onclick=()=>add(1);$('b2').onclick=()=>add(-1);$('b3').onclick=()=>{add(1,.35,.5);add(-1,.45,.5)};$('b4').onclick=()=>ch=[];$('r1').oninput=e=>G.r=+e.target.value;
-L1.c.onpointerdown=e=>{const b=L1.c.getBoundingClientRect(),px=e.clientX-b.left,py=e.clientY-b.top;dr=ch.find(c=>Math.hypot(c.x*L1.w-px,c.y*L1.h-py)<16)||(Math.hypot(G.x*L1.w-px,G.y*L1.h-py)<G.r+10?G:null);L1.c.setPointerCapture(e.pointerId)};
-L1.c.onpointermove=e=>{if(!dr)return;const b=L1.c.getBoundingClientRect();dr.x=(e.clientX-b.left)/L1.w;dr.y=(e.clientY-b.top)/L1.h};L1.c.onpointerup=()=>dr=null;
-function d1(){const x=L1.x,W=L1.w,H=L1.h;x.clearRect(0,0,W,H);
-for(let i=20;i<W;i+=34)for(let j=20;j<H;j+=34){let ex=0,ey=0;ch.forEach(c=>{const dx=i-c.x*W,dy=j-c.y*H,r2=dx*dx+dy*dy+100,r=Math.sqrt(r2);ex+=c.q*dx/(r2*r);ey+=c.q*dy/(r2*r)});const m=Math.hypot(ex,ey);if(m<1e-9)continue;const l=22*Math.tanh(m*2500);arrow(x,i-ex/m*l/2,j-ey/m*l/2,i+ex/m*l/2,j+ey/m*l/2,'#38BDF8',1.2)}
-x.setLineDash([6,5]);x.strokeStyle='#C084FC';x.lineWidth=2;x.beginPath();x.arc(G.x*W,G.y*H,G.r,0,TAU);x.stroke();x.setLineDash([]);
-let q=0;ch.forEach(c=>{if(Math.hypot(c.x*W-G.x*W,c.y*H-G.y*H)<G.r)q+=c.q;x.fillStyle=c.q>0?'#10B981':'#0a0e18';x.strokeStyle='#10B981';x.lineWidth=2;x.beginPath();x.arc(c.x*W,c.y*H,10,0,TAU);x.fill();x.stroke();txt(x,c.q>0?'+':'−',c.x*W-4,c.y*H+4,c.q>0?'#0B0F19':'#10B981','bold 14px JetBrains Mono')});
-$('o1').innerHTML=`Q<sub>int</sub> = ${q>0?'+':''}${q}q → fluxo líquido Φ = ${q}·q/ε₀ ${q==0?'(tudo que entra, sai: dipolo dentro ou nada dentro)':q>0?'(saída líquida: fonte)':'(entrada líquida: sumidouro)'}`}
-// Lab 2
-const L2=cv('c2',380);let t2=0,ph=[],em=[],last=0;
-function d2(){const x=L2.x,W=L2.w,H=L2.h,f=+$('f2').value;t2+=.016*f;const lx=W*.72,my=H*.32,mx=W*.3+W*.16*Math.sin(t2),d=(lx-mx)/(W*.2);
-const P=1/Math.pow(1+d*d*.6,1.5),dP=(P-last)/(.016*Math.max(f,.01));last=P;ph.push(P);em.push(-dP*(f>0));if(ph.length>W/2){ph.shift();em.shift()}
-x.clearRect(0,0,W,H);
-for(let k=1;k<4;k++){x.strokeStyle='#F59E0B55';x.beginPath();x.ellipse(mx,my,40+k*45,14+k*18,0,0,TAU);x.stroke()}
-x.fillStyle='#F59E0B';x.fillRect(mx-40,my-10,40,20);x.fillStyle='#38BDF8';x.fillRect(mx,my-10,40,20);txt(x,'N',mx-26,my+4,'#0B0F19','bold 12px JetBrains Mono');txt(x,'S',mx+14,my+4,'#0B0F19','bold 12px JetBrains Mono');
-x.strokeStyle='#10B981';x.lineWidth=3;x.beginPath();x.ellipse(lx,my,10,60,0,0,TAU);x.stroke();
-const I=-dP*.8;for(let k=0;k<3;k++){const r=60+k*28;x.strokeStyle='#38BDF855';x.lineWidth=1;x.beginPath();x.ellipse(lx,my,12+k*8,r,0,0,TAU);x.stroke()}
-if(Math.abs(I)>.05)arrow(x,lx,my-60,lx,my-60+Math.sign(I)*Math.min(30,Math.abs(I)*20),'#10B981',3);
-const y0=H*.62,h=H*.3;x.strokeStyle='#2a3552';x.beginPath();x.moveTo(0,y0+h/2);x.lineTo(W,y0+h/2);x.stroke();
-const plot=(a,col,s)=>{x.strokeStyle=col;x.lineWidth=2;x.beginPath();a.forEach((v,i)=>{const px=i*2,py=y0+h/2-v*s;i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke()};
-plot(ph.map(v=>v-.5),'#F59E0B',h*.8);plot(em,'#10B981',h*.15);
-txt(x,'Φ_B (âmbar)',8,y0-6,'#F59E0B');txt(x,'ε = −dΦ/dt (verde)',130,y0-6,'#10B981');
-$('o2').innerHTML=f==0?'Ímã parado: Φ constante, ε = 0.':`${dP>0.05?'Fluxo aumentando':dP<-.05?'Fluxo diminuindo':'Fluxo no extremo'} → a espira cria corrente que ${dP>0.05?'se opõe ao aumento (Lenz)':dP<-.05?'tenta manter o fluxo (Lenz)':'é nula (dΦ/dt≈0)'}. O E induzido (ciano) circula mesmo no espaço vazio.`}
-// Lab 3
-const L3=cv('c3',380);let s3=1,t3=0;$('s1').onclick=()=>{s3=1;$('s1').classList.add('on');$('s2').classList.remove('on')};$('s2').onclick=()=>{s3=2;$('s2').classList.add('on');$('s1').classList.remove('on')};
-function d3(){const x=L3.x,W=L3.w,H=L3.h,I=+$('i3').value,cy=H*.5,p1=W*.55,p2=W*.65;t3+=.03*I;x.clearRect(0,0,W,H);
-x.strokeStyle='#10B981';x.lineWidth=3;x.beginPath();x.moveTo(0,cy);x.lineTo(p1,cy);x.moveTo(p2,cy);x.lineTo(W,cy);x.stroke();x.fillStyle='#8A94A8';x.fillRect(p1-4,cy-70,6,140);x.fillRect(p2-2,cy-70,6,140);
-for(let k=0;k<6;k++){const u=((t3*20+k*60)%360);if(u<p1)x.fillStyle='#10B981',x.beginPath(),x.arc(u,cy,4,0,TAU),x.fill();const v=p2+((t3*20+k*60)%(W-p2));x.beginPath(),x.arc(v,cy,4,0,TAU),x.fill()}
-const n=7;for(let k=0;k<n;k++){const yy=cy-55+k*110/(n-1),l=8+I*5*(.7+.3*Math.sin(t3));arrow(x,p1+8,yy,p1+8+Math.min(l,p2-p1-22),yy,'#38BDF8',1.5)}
-txt(x,'∂E/∂t ≠ 0 (J = 0 aqui)',p1-30,cy-85,'#38BDF8');txt(x,'J = I/A no fio',20,cy-14,'#10B981');
-x.setLineDash([6,5]);x.strokeStyle='#C084FC';x.lineWidth=2;x.beginPath();if(s3==1)x.ellipse(W*.25,cy,14,50,0,0,TAU);else{x.moveTo(p1-30,cy-90);x.quadraticCurveTo(p1+(p2-p1)/2,cy-130,p2+30,cy-90);x.lineTo(p2+30,cy+90);x.quadraticCurveTo(p1+(p2-p1)/2,cy+130,p1-30,cy+90);x.closePath()}x.stroke();x.setLineDash([]);
-const cx=s3==1?W*.25:(p1+p2)/2;for(let k=0;k<2;k++){x.strokeStyle='#F59E0B';x.lineWidth=2;x.beginPath();x.ellipse(cx,cy,16+k*14,62+k*20,0,0,TAU);x.stroke()}
-arrow(x,cx+16,cy-8,cx+16,cy+8,'#F59E0B');
-const B=4e-7*Math.PI*I/(TAU*.01)*1e6*1e-0;
-$('o3').innerHTML=`Superfície ${s3}: ${s3==1?'atravessada por J (corrente de condução)':'atravessada por ε₀∂E/∂t (corrente de deslocamento)'}.<br>∮B·dl = μ₀I = ${(4e-7*Math.PI*I*1e6).toFixed(2)} µ₀·µA·... → B a 1 cm ≈ ${(2e-7*I/0.01*1e6).toFixed(1)} µT, igual nas duas superfícies.`}
-// Lab 5 espectro
-const BD=[[3,'Ondas de rádio longas'],[9,'Rádio / micro-ondas'],[11,'Micro-ondas'],[12.5,'Infravermelho'],[14.6,'Luz visível'],[14.9,'Ultravioleta'],[16.5,'Raios X'],[19,'Raios gama']];
-const L5=cv('c5',130);const c0=1/Math.sqrt(4e-7*Math.PI*8.854e-12);$('cc').textContent='calculado no navegador: '+(c0/1e8).toFixed(4)+'×10⁸ m/s';
-function d5(){const x=L5.x,W=L5.w,H=130,lf=+$('f5').value;x.clearRect(0,0,W,H);
-const g=x.createLinearGradient(0,0,W,0);['#7f1d1d','#7c2d12','#a16207','#4d7c0f','#0e7490','#4338ca','#7e22ce'].forEach((c,i)=>g.addColorStop(i/6,c));x.fillStyle='#1b2540';x.fillRect(0,50,W,24);
-const vx=a=>(a-3)/19*W,v0=vx(14.58),v1=vx(14.88);const gg=x.createLinearGradient(v0,0,v1,0);gg.addColorStop(0,'#f00');gg.addColorStop(.5,'#0f0');gg.addColorStop(1,'#80f');x.fillStyle=gg;x.fillRect(v0,50,v1-v0,24);
-for(let k=3;k<=22;k+=3){x.fillStyle='#8A94A8';x.fillRect(vx(k),74,1,6);txt(x,'10^'+k,vx(k)-12,94)}
-const px=vx(lf);x.fillStyle='#C084FC';x.fillRect(px-1,36,3,52);
-// onda ilustrativa
-x.strokeStyle='#C084FC';x.beginPath();for(let i=0;i<W;i++){const cyc=3+(lf-3)*.3;x.lineTo(i,20+10*Math.sin(i/W*TAU*cyc))}x.stroke();
-const f=Math.pow(10,lf),l=c0/f;let nm=BD.filter(b=>lf>=b[0]).pop()[1];const ls=l>=1e3?(l/1e3).toFixed(1)+' km':l>=1?l.toFixed(2)+' m':l>=1e-3?(l*1e3).toFixed(2)+' mm':l>=1e-6?(l*1e6).toFixed(1)+' µm':l>=1e-9?(l*1e9).toFixed(1)+' nm':(l*1e12).toFixed(2)+' pm';
-$('o5').innerHTML=`${nm} · f = 10^${lf.toFixed(1)} Hz · λ = c/f = ${ls}<br>Mesmas quatro equações, mesma velocidade c, apenas a frequência muda.`}
-(function loop(){d1();d2();d3();d5();requestAnimationFrame(loop)})();
-</script></body></html>
+    .tg button:last-child {
+      border-radius: 0 8px 8px 0
+    }
+
+    .tg button.on {
+      background: var(--W);
+      color: #0B0F19;
+      border-color: var(--W)
+    }
+
+    nav {
+      position: fixed;
+      left: 12px;
+      top: 40%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 5
+    }
+
+    nav a {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #2a3552;
+      display: block
+    }
+
+    nav a:hover {
+      background: var(--W)
+    }
+
+    @media(max-width:1250px) {
+      nav {
+        display: none
+      }
+    }
+
+    section {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 60px 20px 20px
+    }
+
+    h1 {
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.1;
+      font-weight: 800;
+      margin: 70px 0 12px
+    }
+
+    h2 {
+      font-size: 30px;
+      margin: 0 0 6px
+    }
+
+    .ato {
+      font: 12px 'JetBrains Mono', monospace;
+      color: var(--W);
+      letter-spacing: .15em;
+      text-transform: uppercase
+    }
+
+    p {
+      color: #c7cedd
+    }
+
+    .mu {
+      color: var(--mu);
+      font-size: 14px
+    }
+
+    .E {
+      color: var(--E)
+    }
+
+    .B {
+      color: var(--B)
+    }
+
+    .Q {
+      color: var(--Q)
+    }
+
+    .W {
+      color: var(--W)
+    }
+
+    .eq {
+      font: italic 22px/1.5 'Times New Roman', serif;
+      text-align: center;
+      background: var(--pn);
+      border: 1px solid #1f2940;
+      border-radius: 10px;
+      padding: 12px;
+      margin: 16px 0;
+      overflow-x: auto;
+      white-space: nowrap
+    }
+
+    .eq small {
+      display: block;
+      font: 12px 'JetBrains Mono', monospace;
+      font-style: normal;
+      color: var(--mu)
+    }
+
+    .rig {
+      display: none;
+      border-left: 3px solid var(--W);
+      padding: 2px 16px;
+      margin: 16px 0;
+      background: #c084fc0d
+    }
+
+    body.rigor .rig {
+      display: block
+    }
+
+    .lab {
+      max-width: 1100px;
+      margin: 26px auto;
+      padding: 0 14px
+    }
+
+    .lab .in {
+      background: var(--pn);
+      border: 1px solid #1f2940;
+      border-radius: 14px;
+      padding: 14px
+    }
+
+    canvas {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+      background: #0a0e18;
+      touch-action: none
+    }
+
+    .ctl {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--mu)
+    }
+
+    .ctl button {
+      background: #1b2540;
+      color: var(--tx);
+      border: 1px solid #2a3552;
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font: inherit
+    }
+
+    .ctl button.on {
+      border-color: var(--W);
+      color: var(--W)
+    }
+
+    input[type=range] {
+      accent-color: var(--W)
+    }
+
+    .rd {
+      font: 13px 'JetBrains Mono', monospace;
+      color: var(--tx);
+      margin-top: 8px;
+      min-height: 3.2em
+    }
+
+    .tl {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .tl button {
+      flex: 1;
+      min-width: 140px;
+      background: var(--pn);
+      border: 1px solid #2a3552;
+      color: var(--tx);
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px
+    }
+
+    .tl button.on {
+      border-color: var(--W)
+    }
+
+    footer {
+      max-width: 820px;
+      margin: 60px auto;
+      padding: 20px;
+      border-top: 1px solid #1f2940;
+      font-size: 13px;
+      color: var(--mu)
+    }
+  </style>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <div id="bar"></div>
+  <header><b>⚡Produção de conteúdo eletromag - Davi Ferreira Rocha - Engenharia de Computação</b>
+    <div class="tg"><button id="m0" class="on">Intuição Física + Formalismo</button><button id="m1">Rigor Matemático
+        Completo</button></div>
+  </header>
+  <nav><a href="#a1"></a><a href="#a2"></a><a href="#a3"></a><a href="#a4"></a><a href="#a5"></a><a href="#a6"></a><a
+      href="#a7"></a></nav>
+  <section>
+    <h1>Como quatro equações explicam toda a eletricidade, o magnetismo e a própria luz?</h1>
+    <p>Uma jornada em sete atos, do quebra-cabeça de 1860 até a semente da relatividade. Arraste, mova e experimente:
+      cada laboratório mostra um termo das equações em ação. Cores: <span class="E">campo elétrico E</span>, <span
+        class="B">campo magnético B</span>, <span class="Q">cargas e correntes</span>, <span class="W">propagação e
+        Poynting</span>.</p>
+  </section>
+
+  <section id="a1">
+    <div class="ato">Ato 1</div>
+    <h2>O quebra-cabeça de 1860</h2>
+    <p>Eletricidade e magnetismo pareciam forças separadas, agindo "à distância". Havia peças soltas: Coulomb (cargas se
+      atraem/repelem), Gauss (cargas e fluxo), Ampère (correntes geram magnetismo), Faraday (magnetismo variável gera
+      eletricidade). Faraday propôs algo radical: o <b>campo</b> é uma entidade física que preenche o espaço, não um
+      artifício de cálculo.</p>
+    <div class="tl" id="tl"></div>
+    <p class="rd" id="tlt"></p>
+  </section>
+
+  <section id="a2">
+    <div class="ato">Ato 2</div>
+    <h2>As quatro equações</h2>
+    <p>Cada uma tem duas faces: a <b>integral</b> (fluxos e circulações em regiões inteiras) e a <b>diferencial</b> (o
+      que acontece em cada ponto).</p>
+    <h3 class="E">1 · Gauss elétrico: cargas são fontes de E</h3>
+    <div class="eq">∮ <b>E</b>·d<b>A</b> = Q<sub>int</sub> / ε₀ &nbsp;⟺&nbsp; ∇·<b>E</b> = ρ / ε₀<small>integral ⟺
+        diferencial</small></div>
+    <div class="rig">
+      <p>O teorema da divergência, ∮<sub>S</sub> <b>F</b>·d<b>A</b> = ∭<sub>V</sub> ∇·<b>F</b> dV, aplicado a E com
+        Q<sub>int</sub>=∭ρ dV, vale para todo volume V, logo a igualdade vale ponto a ponto.</p>
+    </div>
+  </section>
+  <div class="lab">
+    <div class="in"><canvas id="c1"></canvas>
+      <div class="ctl"><button id="b1">+ carga</button><button id="b2">− carga</button><button
+          id="b3">dipolo</button><button id="b4">limpar</button><label>raio da gaussiana <input id="r1" type="range"
+            min="30" max="200" value="90"></label><span>Arraste cargas ou a superfície tracejada.</span></div>
+      <div class="rd" id="o1"></div>
+    </div>
+  </div>
+  <section>
+    <h3 class="B">2 · Gauss magnético: não existem monopolos</h3>
+    <div class="eq">∮ <b>B</b>·d<b>A</b> = 0 &nbsp;⟺&nbsp; ∇·<b>B</b> = 0</div>
+    <p>Se você quebra um imã no meio, vão surgir dois ímãs completos, cada um com Norte e Sul. As linhas de B se fecham
+      sobre si mesmas, então tudo que entra numa superfície fechada também sai. (O laboratório de monopolos foi omitido,
+      por não estar funcionando corretamente; mas podemos usar o dipolo do laboratório acima como analogia: o fluxo
+      líquido só muda se houver uma fonte dentro.)</p>
+    <h3 class="E">3 · Faraday-Lenz: B variável gera E rotacional</h3>
+    <div class="eq">∮ <b>E</b>·d<b>l</b> = −dΦ<sub>B</sub>/dt &nbsp;⟺&nbsp; ∇×<b>E</b> = −∂<b>B</b>/∂t</div>
+    <p>O sinal negativo é a lei de Lenz: a corrente induzida cria um campo que <i>se opõe</i> à variação de fluxo. Se o
+      sinal fosse positivo, a indução reforçaria a si mesma e geraria energia do nada.</p>
+    <div class="rig">
+      <p>Stokes: ∮<sub>C</sub><b>E</b>·d<b>l</b> = ∬<sub>S</sub>(∇×<b>E</b>)·d<b>A</b>. Com superfície fixa,
+        −d/dt∬<b>B</b>·d<b>A</b> = −∬∂<b>B</b>/∂t·d<b>A</b>, e como S é arbitrária, ∇×<b>E</b> = −∂<b>B</b>/∂t.</p>
+    </div>
+  </section>
+  <div class="lab">
+    <div class="in"><canvas id="c2"></canvas>
+      <div class="ctl"><label>frequência do ímã <input id="f2" type="range" min="0" max="3" step=".05"
+            value="1"></label></div>
+      <div class="rd" id="o2"></div>
+    </div>
+  </div>
+  <section>
+    <h3 class="B">4 · Ampère (versão incompleta)</h3>
+    <div class="eq">∮ <b>B</b>·d<b>l</b> = μ₀ I &nbsp;⟺&nbsp; ∇×<b>B</b> = μ₀ <b>J</b><small>falta algo...</small></div>
+    <p>Correntes geram campo magnético circulante. Parece completa, mas esconde uma crise matemática.</p>
+  </section>
+
+  <section id="a3">
+    <div class="ato">Ato 3</div>
+    <h2>A corrente de deslocamento</h2>
+    <p>Carregue um capacitor. Uma superfície que corta o fio é atravessada por corrente I e dá ∮B·dl = μ₀I. Mas uma
+      superfície abaulada que passa <i>entre as placas</i> não é atravessada por corrente alguma (J=0) e daria zero.
+      Mesma curva, dois resultados: contradição.</p>
+    <p>Maxwell notou que o problema é a conservação da carga: ∇·J + ∂ρ/∂t = 0. Aplicando o divergente em ∇×B = μ₀J, o
+      lado esquerdo é sempre zero, mas ∇·J não é. A correção é somar μ₀ε₀ ∂E/∂t: o campo elétrico variável <i>é</i> a
+      corrente que faltava.</p>
+    <div class="eq">∇×<b>B</b> = μ₀<b>J</b> + μ₀ε₀ ∂<b>E</b>/∂t<small>Ampère-Maxwell</small></div>
+  </section>
+  <div class="lab">
+    <div class="in"><canvas id="c3"></canvas>
+      <div class="ctl"><button id="s1" class="on">Superfície 1 (corta o fio)</button><button id="s2">Superfície 2 (entre
+          as placas)</button><label>corrente I <input id="i3" type="range" min=".2" max="5" step=".1" value="2"></label>
+      </div>
+      <div class="rd" id="o3"></div>
+    </div>
+  </div>
+
+  <section id="a4">
+    <div class="ato">Ato 4</div>
+    <h2>Ondas auto-sustentadas</h2>
+    <p>No vácuo (ρ=0, J=0): ∂B/∂t gera E e ∂E/∂t gera B. Cada campo variável cria o outro, e a perturbação se propaga
+      sozinha.</p>
+    <div class="eq">∇²<b>E</b> = μ₀ε₀ ∂²<b>E</b>/∂t²<small>equação de onda</small></div>
+    <div class="rig">
+      <p><b>Dedução.</b> Rotacional de Faraday: ∇×(∇×E) = −∂(∇×B)/∂t. Identidade: ∇×(∇×E) = ∇(∇·E) − ∇²E. No vácuo
+        ∇·E=0, logo −∇²E = −∂(∇×B)/∂t. Ampère-Maxwell dá ∇×B = μ₀ε₀∂E/∂t. Substituindo: ∇²E = μ₀ε₀ ∂²E/∂t². Análogo para
+        B.</p>
+    </div>
+  </section>
+
+  <section id="a5">
+    <div class="ato">Ato 5</div>
+    <h2>A natureza da luz</h2>
+    <div class="eq">v = 1/√(μ₀ε₀) = 1/√(4π×10⁻⁷ · 8,854×10⁻¹²) ≈ 2,998×10⁸ m/s<small id="cc"></small></div>
+    <p>Esse número, vindo de medidas elétricas e magnéticas de bancada, coincide com a velocidade da luz medida por
+      Fizeau e Foucault. Maxwell concluiu que a luz é uma onda eletromagnética. Rádio, luz visível e raios gama são
+      soluções das mesmas equações; só muda a frequência.</p>
+  </section>
+  <div class="lab">
+    <div class="in"><canvas id="c5" style="height:130px"></canvas>
+      <div class="ctl"><label style="flex:1">log₁₀ f <input id="f5" type="range" min="3" max="22" step=".01"
+            value="14.8" style="width:80%"></label></div>
+      <div class="rd" id="o5"></div>
+    </div>
+  </div>
+
+  <section id="a6">
+    <div class="ato">Ato 6</div>
+    <h2>Do papel ao mundo moderno</h2>
+
+    <p><b class="W">Antenas (Wi-Fi, 5G, rádio):</b> enquanto cargas em movimento uniforme apenas carregam seus campos
+      consigo, cargas aceleradas (variações temporais na densidade de corrente, ∂<b>J</b>/∂t) geram perturbações
+      transversais nos campos <b>E</b> e <b>B</b> que se desprendem da fonte. Através da lei de Ampère-Maxwell acoplada
+      à lei de Faraday foi possível ver que esses campos se autoalimentam e irradiam pelo espaço como ondas
+      eletromagnéticas, transportando energia e informação à velocidade da luz.</p>
+
+    <p><b class="W">Fibras ópticas:</b> a partir das equações de Maxwell aplicadas à interface entre dois meios
+      dielétricos com diferentes índices de refração (o núcleo e a casca da fibra), impõem-se condições de contorno
+      sobre as componentes tangenciais e normais de <b>E</b> e <b>B</b>. Quando um feixe de luz incide nessa fronteira
+      acima do ângulo crítico, as equações exigem que a onda transmitida se torne evanescente, resultando na reflexão
+      interna total que confina e guia o pulso óptico por quilômetros com atenuação mínima.</p>
+
+    <p><b class="B">Transformadores e carga por indução:</b> governados diretamente pela lei de Faraday-Lenz (∇×<b>E</b>
+      = −∂<b>B</b>/∂t). Uma corrente alternada na bobina primária produz um fluxo magnético variável no tempo,
+      frequentemente canalizado por um núcleo ferromagnético. Esse campo magnético oscilante atravessa a bobina
+      secundária e induz nela um campo elétrico não conservativo (uma força eletromotriz), permitindo transferir energia
+      elétrica e alterar níveis de tensão sem qualquer contato físico.</p>
+
+    <p><b class="E">Gaiola de Faraday:</b> no regime eletrostático, um campo externo desloca os elétrons livres de um
+      condutor até que o acúmulo de cargas na superfície crie um campo oposto que anula perfeitamente o campo resultante
+      no interior (<b>E</b> = 0, mantendo o volume equipotencial). No caso dinâmico de ondas eletromagnéticas (como no
+      micro-ondas ou na blindagem de cabos), o campo incidente induz correntes superficiais oscilantes (correntes
+      parasitas) que irradiam uma onda de mesma amplitude e fase oposta, cancelando a radiação dentro da cavidade.</p>
+  </section>
+
+  <section id="a7">
+    <div class="ato">Ato 7</div>
+    <h2>Conexões profundas</h2>
+    <h3 class="W">Energia no espaço vazio</h3>
+    <div class="eq"><b>S</b> = (1/μ₀) <b>E</b> × <b>B</b></div>
+    <p>Num circuito com bateria e resistor, a energia não viaja dentro dos elétrons: ela flui pelo campo ao redor do fio
+      e entra radialmente no resistor. O fio apenas guia os campos.</p>
+    <h3 class="Q">A conservação da carga vem de graça</h3>
+    <p>Como ∇·(∇×B) ≡ 0 sempre, tomar o divergente de Ampère-Maxwell e usar Gauss elétrico resulta em ∇·J + ∂ρ/∂t = 0.
+      Não é uma lei extra: está embutida na estrutura das equações.</p>
+    <h3 class="W">A semente da relatividade</h3>
+    <p>A equação \(c = 1/\sqrt{\mu_0\varepsilon_0}\) revela que a velocidade da luz depende apenas de duas constantes
+      fundamentais do vácuo, sem fazer qualquer referência à velocidade da fonte ou do observador. Isso criou um conflito direto com a mecânica de Newton, na qual as velocidades deveriam sempre se somar. Em vez de modificar as equações de Maxwell para adaptá-las à física clássica, Albert Einstein, em 1905, partiu da premissa de que o eletromagnetismo estava correto: se as leis de Maxwell são universais e válidas em todos os referenciais inerciais, então o valor de \(c\) precisa ser invariante para qualquer observador. Ao elevar essa consequência das equações de Maxwell ao status de postulado fundamental, Einstein foi obrigado a abandonar as noções de espaço e tempo absolutos, dando origem à uma de suas mais importantes contribuições: a Teoria da Relatividade Restrita.</p>
+  </section>
+  <script>
+    const $ = s => document.getElementById(s), TAU = Math.PI * 2;
+    // modo + progresso
+    [0, 1].forEach(i => $('m' + i).onclick = () => { document.body.classList.toggle('rigor', !!i); $('m0').classList.toggle('on', !i); $('m1').classList.toggle('on', !!i) });
+    addEventListener('scroll', () => $('bar').style.width = 100 * scrollY / (document.body.scrollHeight - innerHeight) + '%');
+    // timeline
+    const T = [['Oersted · 1820', 'Uma corrente elétrica passando por um fio condutor desvia a agulha de uma bússola: eletricidade gera magnetismo.'], ['Faraday · 1831', 'Um ímã em movimento induz corrente numa espira: um campo magnético variável gera uma corrente elétrica em um fio condutor.'], ['Maxwell · 1861', 'Antes de 1861, a Lei de Faraday já mostrava que um campo magnético variável gerava um campo elétrico. Maxwell demonstrou o complemento: um campo elétrico que varia no tempo também gera um campo magnético, mesmo no vácuo, onde não há fluxo real de cargas elétricas. Acrescenta a corrente de deslocamento, completando assim a simetria entre os campos.'], ['Maxwell · 1865', ' Ao incluir a corrente de deslocamento de Lei de Ampère, Maxwell percebeu que campos elétricos e magnéticos variáveis podiam se retroalimentar e viajar pelo espaço na forma de ondas. Ao calcular a velocidade dessas ondas usando constantes elétricas e magnéticas conhecidas, ele chegou exatamente à velocidade da luz, concluindo que a própria luz é uma onda eletromagnética.']];
+    T.forEach((t, i) => { const b = document.createElement('button'); b.textContent = t[0]; b.onclick = () => { [...$('tl').children].forEach(x => x.classList.remove('on')); b.classList.add('on'); $('tlt').textContent = t[1] }; $('tl').appendChild(b) }); $('tl').children[0].click();
+    // canvas
+    function cv(id, h) { const c = $(id), d = devicePixelRatio || 1, o = { c, h }; o.r = () => { const w = c.parentNode.clientWidth - 28; c.style.width = w + 'px'; c.style.height = h + 'px'; c.width = w * d; c.height = h * d; o.w = w; o.x = c.getContext('2d'); o.x.setTransform(d, 0, 0, d, 0, 0) }; o.r(); addEventListener('resize', o.r); return o }
+    function arrow(x, a, b, c, d, col, w = 1.6) { x.strokeStyle = x.fillStyle = col; x.lineWidth = w; x.beginPath(); x.moveTo(a, b); x.lineTo(c, d); x.stroke(); const g = Math.atan2(d - b, c - a); x.beginPath(); x.moveTo(c, d); x.lineTo(c - 6 * Math.cos(g - .4), d - 6 * Math.sin(g - .4)); x.lineTo(c - 6 * Math.cos(g + .4), d - 6 * Math.sin(g + .4)); x.fill() }
+    function txt(x, s, a, b, col = '#8A94A8', f = '12px JetBrains Mono') { x.fillStyle = col; x.font = f; x.fillText(s, a, b) }
+    // Lab 1
+    const L1 = cv('c1', 420); let ch = [{ x: .4, y: .5, q: 1 }, { x: .6, y: .5, q: -1 }], G = { x: .5, y: .5, r: 90 }, dr = null;
+    const add = (q, x = .3 + Math.random() * .4, y = .3 + Math.random() * .4) => ch.push({ x, y, q });
+    $('b1').onclick = () => add(1); $('b2').onclick = () => add(-1); $('b3').onclick = () => { add(1, .35, .5); add(-1, .45, .5) }; $('b4').onclick = () => ch = []; $('r1').oninput = e => G.r = +e.target.value;
+    L1.c.onpointerdown = e => { const b = L1.c.getBoundingClientRect(), px = e.clientX - b.left, py = e.clientY - b.top; dr = ch.find(c => Math.hypot(c.x * L1.w - px, c.y * L1.h - py) < 16) || (Math.hypot(G.x * L1.w - px, G.y * L1.h - py) < G.r + 10 ? G : null); L1.c.setPointerCapture(e.pointerId) };
+    L1.c.onpointermove = e => { if (!dr) return; const b = L1.c.getBoundingClientRect(); dr.x = (e.clientX - b.left) / L1.w; dr.y = (e.clientY - b.top) / L1.h }; L1.c.onpointerup = () => dr = null;
+    function d1() {
+      const x = L1.x, W = L1.w, H = L1.h; x.clearRect(0, 0, W, H);
+      for (let i = 20; i < W; i += 34)for (let j = 20; j < H; j += 34) { let ex = 0, ey = 0; ch.forEach(c => { const dx = i - c.x * W, dy = j - c.y * H, r2 = dx * dx + dy * dy + 100, r = Math.sqrt(r2); ex += c.q * dx / (r2 * r); ey += c.q * dy / (r2 * r) }); const m = Math.hypot(ex, ey); if (m < 1e-9) continue; const l = 22 * Math.tanh(m * 2500); arrow(x, i - ex / m * l / 2, j - ey / m * l / 2, i + ex / m * l / 2, j + ey / m * l / 2, '#38BDF8', 1.2) }
+      x.setLineDash([6, 5]); x.strokeStyle = '#C084FC'; x.lineWidth = 2; x.beginPath(); x.arc(G.x * W, G.y * H, G.r, 0, TAU); x.stroke(); x.setLineDash([]);
+      let q = 0; ch.forEach(c => { if (Math.hypot(c.x * W - G.x * W, c.y * H - G.y * H) < G.r) q += c.q; x.fillStyle = c.q > 0 ? '#10B981' : '#0a0e18'; x.strokeStyle = '#10B981'; x.lineWidth = 2; x.beginPath(); x.arc(c.x * W, c.y * H, 10, 0, TAU); x.fill(); x.stroke(); txt(x, c.q > 0 ? '+' : '−', c.x * W - 4, c.y * H + 4, c.q > 0 ? '#0B0F19' : '#10B981', 'bold 14px JetBrains Mono') });
+      $('o1').innerHTML = `Q<sub>int</sub> = ${q > 0 ? '+' : ''}${q}q → fluxo líquido Φ = ${q}·q/ε₀ ${q == 0 ? '(tudo que entra, sai: dipolo dentro ou nada dentro)' : q > 0 ? '(saída líquida: fonte)' : '(entrada líquida: sumidouro)'}`
+    }
+    // Lab 2
+    const L2 = cv('c2', 380); let t2 = 0, ph = [], em = [], last = 0;
+    function d2() {
+      const x = L2.x, W = L2.w, H = L2.h, f = +$('f2').value; t2 += .016 * f; const lx = W * .72, my = H * .32, mx = W * .3 + W * .16 * Math.sin(t2), d = (lx - mx) / (W * .2);
+      const P = 1 / Math.pow(1 + d * d * .6, 1.5), dP = (P - last) / (.016 * Math.max(f, .01)); last = P; ph.push(P); em.push(-dP * (f > 0)); if (ph.length > W / 2) { ph.shift(); em.shift() }
+      x.clearRect(0, 0, W, H);
+      for (let k = 1; k < 4; k++) { x.strokeStyle = '#F59E0B55'; x.beginPath(); x.ellipse(mx, my, 40 + k * 45, 14 + k * 18, 0, 0, TAU); x.stroke() }
+      x.fillStyle = '#F59E0B'; x.fillRect(mx - 40, my - 10, 40, 20); x.fillStyle = '#38BDF8'; x.fillRect(mx, my - 10, 40, 20); txt(x, 'N', mx - 26, my + 4, '#0B0F19', 'bold 12px JetBrains Mono'); txt(x, 'S', mx + 14, my + 4, '#0B0F19', 'bold 12px JetBrains Mono');
+      x.strokeStyle = '#10B981'; x.lineWidth = 3; x.beginPath(); x.ellipse(lx, my, 10, 60, 0, 0, TAU); x.stroke();
+      const I = -dP * .8; for (let k = 0; k < 3; k++) { const r = 60 + k * 28; x.strokeStyle = '#38BDF855'; x.lineWidth = 1; x.beginPath(); x.ellipse(lx, my, 12 + k * 8, r, 0, 0, TAU); x.stroke() }
+      if (Math.abs(I) > .05) arrow(x, lx, my - 60, lx, my - 60 + Math.sign(I) * Math.min(30, Math.abs(I) * 20), '#10B981', 3);
+      const y0 = H * .62, h = H * .3; x.strokeStyle = '#2a3552'; x.beginPath(); x.moveTo(0, y0 + h / 2); x.lineTo(W, y0 + h / 2); x.stroke();
+      const plot = (a, col, s) => { x.strokeStyle = col; x.lineWidth = 2; x.beginPath(); a.forEach((v, i) => { const px = i * 2, py = y0 + h / 2 - v * s; i ? x.lineTo(px, py) : x.moveTo(px, py) }); x.stroke() };
+      plot(ph.map(v => v - .5), '#F59E0B', h * .8); plot(em, '#10B981', h * .15);
+      txt(x, 'Φ_B (âmbar)', 8, y0 - 6, '#F59E0B'); txt(x, 'ε = −dΦ/dt (verde)', 130, y0 - 6, '#10B981');
+      $('o2').innerHTML = f == 0 ? 'Ímã parado: Φ constante, ε = 0.' : `${dP > 0.05 ? 'Fluxo aumentando' : dP < -.05 ? 'Fluxo diminuindo' : 'Fluxo no extremo'} → a espira cria corrente que ${dP > 0.05 ? 'se opõe ao aumento (Lenz)' : dP < -.05 ? 'tenta manter o fluxo (Lenz)' : 'é nula (dΦ/dt≈0)'}. O E induzido (ciano) circula mesmo no espaço vazio.`
+    }
+    // Lab 3
+    const L3 = cv('c3', 380); let s3 = 1, t3 = 0; $('s1').onclick = () => { s3 = 1; $('s1').classList.add('on'); $('s2').classList.remove('on') }; $('s2').onclick = () => { s3 = 2; $('s2').classList.add('on'); $('s1').classList.remove('on') };
+    function d3() {
+      const x = L3.x, W = L3.w, H = L3.h, I = +$('i3').value, cy = H * .5, p1 = W * .55, p2 = W * .65; t3 += .03 * I; x.clearRect(0, 0, W, H);
+      x.strokeStyle = '#10B981'; x.lineWidth = 3; x.beginPath(); x.moveTo(0, cy); x.lineTo(p1, cy); x.moveTo(p2, cy); x.lineTo(W, cy); x.stroke(); x.fillStyle = '#8A94A8'; x.fillRect(p1 - 4, cy - 70, 6, 140); x.fillRect(p2 - 2, cy - 70, 6, 140);
+      for (let k = 0; k < 6; k++) { const u = ((t3 * 20 + k * 60) % 360); if (u < p1) x.fillStyle = '#10B981', x.beginPath(), x.arc(u, cy, 4, 0, TAU), x.fill(); const v = p2 + ((t3 * 20 + k * 60) % (W - p2)); x.beginPath(), x.arc(v, cy, 4, 0, TAU), x.fill() }
+      const n = 7; for (let k = 0; k < n; k++) { const yy = cy - 55 + k * 110 / (n - 1), l = 8 + I * 5 * (.7 + .3 * Math.sin(t3)); arrow(x, p1 + 8, yy, p1 + 8 + Math.min(l, p2 - p1 - 22), yy, '#38BDF8', 1.5) }
+      txt(x, '∂E/∂t ≠ 0 (J = 0 aqui)', p1 - 30, cy - 85, '#38BDF8'); txt(x, 'J = I/A no fio', 20, cy - 14, '#10B981');
+      x.setLineDash([6, 5]); x.strokeStyle = '#C084FC'; x.lineWidth = 2; x.beginPath(); if (s3 == 1) x.ellipse(W * .25, cy, 14, 50, 0, 0, TAU); else { x.moveTo(p1 - 30, cy - 90); x.quadraticCurveTo(p1 + (p2 - p1) / 2, cy - 130, p2 + 30, cy - 90); x.lineTo(p2 + 30, cy + 90); x.quadraticCurveTo(p1 + (p2 - p1) / 2, cy + 130, p1 - 30, cy + 90); x.closePath() } x.stroke(); x.setLineDash([]);
+      const cx = s3 == 1 ? W * .25 : (p1 + p2) / 2; for (let k = 0; k < 2; k++) { x.strokeStyle = '#F59E0B'; x.lineWidth = 2; x.beginPath(); x.ellipse(cx, cy, 16 + k * 14, 62 + k * 20, 0, 0, TAU); x.stroke() }
+      arrow(x, cx + 16, cy - 8, cx + 16, cy + 8, '#F59E0B');
+      const B = 4e-7 * Math.PI * I / (TAU * .01) * 1e6 * 1e-0;
+      $('o3').innerHTML = `Superfície ${s3}: ${s3 == 1 ? 'atravessada por J (corrente de condução)' : 'atravessada por ε₀∂E/∂t (corrente de deslocamento)'}.<br>∮B·dl = μ₀I = ${(4e-7 * Math.PI * I * 1e6).toFixed(2)} µ₀·µA·... → B a 1 cm ≈ ${(2e-7 * I / 0.01 * 1e6).toFixed(1)} µT, igual nas duas superfícies.`
+    }
+    // Lab 5 espectro
+    const BD = [[3, 'Ondas de rádio longas'], [9, 'Rádio / micro-ondas'], [11, 'Micro-ondas'], [12.5, 'Infravermelho'], [14.6, 'Luz visível'], [14.9, 'Ultravioleta'], [16.5, 'Raios X'], [19, 'Raios gama']];
+    const L5 = cv('c5', 130); const c0 = 1 / Math.sqrt(4e-7 * Math.PI * 8.854e-12); $('cc').textContent = 'calculado no navegador: ' + (c0 / 1e8).toFixed(4) + '×10⁸ m/s';
+    function d5() {
+      const x = L5.x, W = L5.w, H = 130, lf = +$('f5').value; x.clearRect(0, 0, W, H);
+      const g = x.createLinearGradient(0, 0, W, 0);['#7f1d1d', '#7c2d12', '#a16207', '#4d7c0f', '#0e7490', '#4338ca', '#7e22ce'].forEach((c, i) => g.addColorStop(i / 6, c)); x.fillStyle = '#1b2540'; x.fillRect(0, 50, W, 24);
+      const vx = a => (a - 3) / 19 * W, v0 = vx(14.58), v1 = vx(14.88); const gg = x.createLinearGradient(v0, 0, v1, 0); gg.addColorStop(0, '#f00'); gg.addColorStop(.5, '#0f0'); gg.addColorStop(1, '#80f'); x.fillStyle = gg; x.fillRect(v0, 50, v1 - v0, 24);
+      for (let k = 3; k <= 22; k += 3) { x.fillStyle = '#8A94A8'; x.fillRect(vx(k), 74, 1, 6); txt(x, '10^' + k, vx(k) - 12, 94) }
+      const px = vx(lf); x.fillStyle = '#C084FC'; x.fillRect(px - 1, 36, 3, 52);
+      // onda ilustrativa
+      x.strokeStyle = '#C084FC'; x.beginPath(); for (let i = 0; i < W; i++) { const cyc = 3 + (lf - 3) * .3; x.lineTo(i, 20 + 10 * Math.sin(i / W * TAU * cyc)) } x.stroke();
+      const f = Math.pow(10, lf), l = c0 / f; let nm = BD.filter(b => lf >= b[0]).pop()[1]; const ls = l >= 1e3 ? (l / 1e3).toFixed(1) + ' km' : l >= 1 ? l.toFixed(2) + ' m' : l >= 1e-3 ? (l * 1e3).toFixed(2) + ' mm' : l >= 1e-6 ? (l * 1e6).toFixed(1) + ' µm' : l >= 1e-9 ? (l * 1e9).toFixed(1) + ' nm' : (l * 1e12).toFixed(2) + ' pm';
+      $('o5').innerHTML = `${nm} · f = 10^${lf.toFixed(1)} Hz · λ = c/f = ${ls}<br>Mesmas quatro equações, mesma velocidade c, apenas a frequência muda.`
+    }
+    (function loop() { d1(); d2(); d3(); d5(); requestAnimationFrame(loop) })();
+  </script>
+</body>
+
+</html>
